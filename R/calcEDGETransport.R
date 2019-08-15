@@ -27,6 +27,9 @@ calcEDGETransport <- function(subtype = "logit_exponent") {
       year_inter,
       extrapolation_type="constant",
       integrate_interpolated_years=TRUE)
+    
+    weightInt=weightInt[, getYears(data),"gdp_SSP2"]
+    
   }
 
   data <- readSource("EDGETransport", subtype, convert = conv)
@@ -70,7 +73,7 @@ calcEDGETransport <- function(subtype = "logit_exponent") {
          "esCapCost" = {
            weight = get_weight(data)
            unit = "Passenger transport [2005US$/pkm]; freight transport: [2005US$/tkm]"
-           description = "Transport ES demand trajectories for the CES tree."
+           description = "Transport non-energy related costs associated to CES tree."
          },
          "fe2es" = {
            weight = get_weight(data)
