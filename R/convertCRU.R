@@ -4,8 +4,7 @@
 #' @return List of magpie objects with results on cellular level, weight, unit and description.
 #' @author Kristine Karstens
 #' @seealso
-#' \code{\link{readCRU}},
-#' \code{\link{read.LPJ_input}}
+#' \code{\link{readLPJmL}}
 #' @examples
 #'
 #' \dontrun{
@@ -14,7 +13,6 @@
 #'
 #' @import madrat
 #' @import magclass
-#' @importFrom lpjclass read.LPJ_input
 
 convertCRU <- function(x){
 

@@ -10,7 +10,7 @@ The R-library moinput provides useful functions and a common structure to all th
 For installation of the most recent package version an additional repository has to be added in R:
 
 ```r
-options(repos = c(CRAN = "@CRAN@", rd3mod_repo = "http://www.pik-potsdam.de/rd3mod/R/"))
+options(repos = c(CRAN = "@CRAN@", pik = "https://rse.pik-potsdam.de/r/packages"))
 ```
 The additional repository can be made available permanently by adding the line above to a file called `.Rprofile` stored in the home folder of your system (`Sys.glob("~")` in R returns the home directory).
 
@@ -34,9 +34,15 @@ The package comes with a vignette describing the basic functionality of the pack
 vignette("moinput")
 ```
 
+## Travis CI Integration
+
+[![Travis build status](https://travis-ci.com/pik-piam/moinput.svg?branch=master)](https://travis-ci.com/pik-piam/moinput)
+
 
 ## Questions / Problems
 
 In case of questions / problems please contact Jan Dietrich <dietrich@pik-potsdam.de>.
 
+## Citation
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3699594.svg)](https://doi.org/10.5281/zenodo.3699594)
