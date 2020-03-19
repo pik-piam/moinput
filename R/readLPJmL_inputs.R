@@ -13,6 +13,7 @@
 #'
 #' @import madrat
 #' @import magclass
+#' @import dplyr
 #' @importFrom lpjclass read.LPJ_input
 #' @importFrom lucode path
  
@@ -127,8 +128,8 @@ readLPJmL_inputs <-
       }
       
       x <- cbind(grid, x)
-      x <- merge(cell_mapping, x, by = c("lon", "lat"))
-      x <- as.magpie(x[, -c(1, 2, 3, 5, 6)])
+      x <- left_join(cell_mapping, x, by = c("lon", "lat"))
+      x <- as.magpie(x[, -c(1, 3, 4, 5, 6)])
       x <- collapseNames(as.magpie(x))
       getNames(x) <- subtype
       
