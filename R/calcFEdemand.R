@@ -229,6 +229,12 @@ calcFEdemand <- function(subtype = "FE") {
       select(-'country', -'region') %>% 
       getElement('iso3c') 
 
+    sgma <- 7e3
+    cutoff <- 1.012
+    epsilon <- 0.014
+    exp1 <- 2
+    exp2 <- 1.4
+
     reduction_factor <- tmp_GDPpC %>%
       interpolate_missing_periods(year = seq_range(range(year)),
                                   value = 'GDPpC') %>%
@@ -236,11 +242,8 @@ calcFEdemand <- function(subtype = "FE") {
       mutate(
         # no reduction for SSA countries before 2050, to allow for more 
         # equitable industry and infrastructure development
-        a = ifelse(iso3c %in% SSA_countries & 2050 > year, -0.005, 0.002),
-        b = ifelse(iso3c %in% SSA_countries & 2050 > year,  2e-7,  3e-7),
-        f = cumprod(ifelse(2020 > year, 1,
-                           1 - ( pmin(0.007, !!sym('a') + !!sym('b') * GDPpC)
-                               * (1 - (year - 2020) / (2150 - 2020)))))) %>%
+        f = cumprod(ifelse(2020 > year, 1, pmin(cutoff, 1 + 4*epsilon*((sgma/GDPpC)^exp1 - (sgma/GDPpC)^exp2))
+                           ))) %>%
       ungroup() %>%
       select(-GDPpC) %>%
       filter(year %in% years)
