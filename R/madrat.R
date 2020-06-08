@@ -1,6 +1,8 @@
 #' @importFrom madrat vcat
 
 .onLoad <- function(libname, pkgname){
+  .Deprecated("mrcommons|mrfeed|mrland|mrmagpie|mrplayground|mrremind|mrvalidation", old="moinput",
+              msg="Package 'moinput' is deprecated.\nUse its successors 'mrcommons', 'mrfeed', 'mrland', 'mrmagpie', 'mrplayground', 'mrremind' or 'mrvalidation' instead.")
   madrat::setConfig(packages=c(madrat::getConfig("packages"),pkgname), .cfgchecks=FALSE, .verbose=FALSE)
   madrat::setConfig(nolabels=c(madrat::getConfig("nolabels"),"REMIND"), .cfgchecks=FALSE, .verbose=FALSE)
 }
